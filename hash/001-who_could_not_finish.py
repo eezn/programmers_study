@@ -18,9 +18,9 @@ def solution(participant, completion):
     for p, c in zip(participant, completion):
         if p != c:
             return p
-    # if r is None:
-    #     r = participant[-1]
-    return participant[-1]
+    if r is None:
+        r = participant[-1]
+    return r
 
 
 if __name__ == '__main__':
