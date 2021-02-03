@@ -177,7 +177,7 @@ def solution_use_combinations(clothes):
     return solo_num + sum_num
 
 
-def solution_use_combinations1(clothes):
+def solution_use_combinations_removed_print(clothes):
     attribute = dict()
     entity = dict()
     for value, key in clothes:
@@ -208,6 +208,22 @@ def solution_use_combinations1(clothes):
     return solo_num + sum_num
 
 
+def solution_use_dict3(clothes):
+    answer = 1
+    attribute = dict()
+
+    for value, key in clothes:
+        if attribute.get(key) is None:
+            attribute[key] = []
+            attribute[key].append(value)
+        else:
+            attribute[key].append(value)
+
+    for key in attribute:
+        answer *= len(attribute[key]) + 1
+    return answer - 1
+
+
 def factorial(n):
     i = n
     answer = 0
@@ -236,4 +252,5 @@ if __name__ == '__main__':
     n = 9
     # print(factorial(n))
     # print(recurrence_factorial(n))
-    print(solution_use_combinations(t2))
+    print(solution_use_combinations(t4))
+    print(solution_use_dict3(t4))
