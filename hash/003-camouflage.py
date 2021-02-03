@@ -252,5 +252,5 @@ if __name__ == '__main__':
     n = 9
     # print(factorial(n))
     # print(recurrence_factorial(n))
-    print(solution_use_combinations(t4))
-    print(solution_use_dict3(t4))
+    print(solution_use_combinations(c1))
+    print(solution_use_dict3(c1))
