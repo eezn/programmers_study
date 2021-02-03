@@ -6,8 +6,34 @@ c1_t = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turb
 c1 = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]
 c2 = [["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]
 
+###
+
+t1 = [
+    ["a", "1"],
+    ["b", "1"],
+    # ["c", "1"],
+    ["A", "2"],
+    ["B", "2"],
+    # ["C", "2"],
+    ["!", "3"],
+    ["@", "3"],
+    # ["#", "3"]
+]  ## 6 + 12 + 8 = 20개
+
+t2 = [
+    ["a", "1"],
+    ["b", "1"],
+    ["c", "1"],
+    ["A", "2"],
+    # ["B", "2"],
+    # ["C", "2"],
+    ["!", "3"],
+    ["@", "3"],
+    # ["#", "3"]
+]  ## 6 + 11 + 6 = 23개
 
 
+###
 def solution(clothes):
     a = 0
     set_data = set()
@@ -31,8 +57,6 @@ def solution(clothes):
     # print(a)
     return a
 
-
-c1 = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]
 
 def solution_use_dict(clothes):
     attribute = dict()
@@ -67,28 +91,31 @@ def solution_use_dict(clothes):
     answer = 0
     return answer
 
+
 def solution_use_dict2(clothes):
     attribute = dict()
+    entity = dict()
     for value, key in clothes:
         if attribute.get(key) is None:
             attribute[key] = []
             attribute[key].append(value)
         else:
             attribute[key].append(value)
-    print(attribute)
-    count = 0
+    # print(attribute)
     keys_list = list(attribute.keys())
-    print(len(keys_list))
+    keys_len = len(keys_list)
+    print("keys_len : " + str(keys_len))
 
     value_list = []
     for key in keys_list:
-        print(attribute.get(key))
-        count += len(attribute.get(key))
+        # print(len(attribute.get(key)))
+        entity[key] = len(attribute.get(key))
+        # count += len(attribute.get(key))
         for value in attribute.get(key):
             value_list.append(value)
     # dataSet = value_list
-    print(count)
-    print(value_list)
+    print("entity_list : " + str(entity))
+    # print(value_list)
     # mCand = []
     # for i in range(len(dataSet)):
     #     for j in range(i+1, len(dataSet)):
@@ -102,8 +129,32 @@ def solution_use_dict2(clothes):
     # print(mCand)
 
 
+def factorial(n):
+    i = n
+    answer = 0
+    while True:
+        if n == 1:  # 1! = 1
+            return 1
+        elif answer == 0:  # 초기값 계산
+            answer = i * (i - 1)
+        else:  # 그 뒤로 반복
+            answer = answer * (i - 1)
+        i -= 1
+        if i <= 1:
+            break
+    return answer
+
+
+def recurrence_factorial(n):
+    answer = n
+    if n > 1:
+        answer = n * recurrence_factorial(n - 1)
+    return answer
 
 
 if __name__ == '__main__':
     # solution(c1_t)
-    print(solution_use_dict2(c1))
+    n = 9
+    print(factorial(n))
+    print(recurrence_factorial(n))
+    print(solution_use_dict2(t1))
