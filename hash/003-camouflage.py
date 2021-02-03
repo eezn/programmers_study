@@ -1,5 +1,6 @@
 ##
 #
+from itertools import combinations
 
 c1_t = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]
 
@@ -101,32 +102,71 @@ def solution_use_dict2(clothes):
             attribute[key].append(value)
         else:
             attribute[key].append(value)
-    # print(attribute)
+    print(attribute)
     keys_list = list(attribute.keys())
     keys_len = len(keys_list)
     print("keys_len : " + str(keys_len))
 
     value_list = []
     for key in keys_list:
-        # print(len(attribute.get(key)))
         entity[key] = len(attribute.get(key))
         # count += len(attribute.get(key))
         for value in attribute.get(key):
             value_list.append(value)
-    # dataSet = value_list
     print("entity_list : " + str(entity))
-    # print(value_list)
-    # mCand = []
-    # for i in range(len(dataSet)):
-    #     for j in range(i+1, len(dataSet)):
-    #         set1 = set(dataSet[i]).union(set(dataSet[j])) #중복 부분집합 합치기
-    #         if len(set1) > len(dataSet[i]) + 1:
-    #             continue
-    #         list1 = list(set1)
-    #         list1.sort()	#부분집합을 정렬
-    #         if tuple(list1) not in mCand:
-    #             mCand.append(tuple(list1))
-    # print(mCand)
+
+
+def solution_use_combinations(clothes):
+    answer = 0
+    attribute = dict()
+    entity = dict()
+    for value, key in clothes:
+        if attribute.get(key) is None:
+            attribute[key] = []
+            attribute[key].append(value)
+        else:
+            attribute[key].append(value)
+    print(attribute)
+    keys_list = list(attribute.keys())
+    keys_len = len(keys_list)
+    print("keys_len : " + str(keys_len))
+    value_list = []
+    for key in keys_list:
+        entity[key] = len(attribute.get(key))
+        # count += len(attribute.get(key))
+        for value in attribute.get(key):
+            # print(value)
+            value_list.append(value)
+    print("entity : " + str(entity))
+
+    solo_num = sum(entity.values())
+    # for i in range(entity):
+    #     solo_num += entity.values()
+    print("1개를 고를 때 :" + str(solo_num))
+
+    multiply_num = 0
+    sum_num = 0
+    for i in range(2, keys_len + 1):
+        key_list_combinations = list(combinations(entity, i))
+        print(str(i) + "개를 고를 때 :" + str(key_list_combinations))
+        for j in range(len(key_list_combinations)):
+            # print(key_list_combinations[j])
+            # print("더하기")
+
+            multiply_num = 0
+            for k in range(len(key_list_combinations[j])):
+                print(str(len(attribute.get(key_list_combinations[j][k]))) + str("곱하기"))
+                if multiply_num == 0:
+                    multiply_num = len(attribute.get(key_list_combinations[j][k]))
+                else:
+                    multiply_num *= len(attribute.get(key_list_combinations[j][k]))
+                print("곱 " + str(multiply_num))
+            print("---")
+            sum_num += multiply_num
+            print(sum_num)
+
+    print(str(solo_num) + " " + str(sum_num))
+    return answer
 
 
 def factorial(n):
@@ -155,6 +195,6 @@ def recurrence_factorial(n):
 if __name__ == '__main__':
     # solution(c1_t)
     n = 9
-    print(factorial(n))
-    print(recurrence_factorial(n))
-    print(solution_use_dict2(t1))
+    # print(factorial(n))
+    # print(recurrence_factorial(n))
+    print(solution_use_combinations(t1))
