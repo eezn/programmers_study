@@ -19,14 +19,28 @@ def solution_insert_sort(numbers):
 
 
 def solution_reverse_radix_sort(numbers):
-    pass
+    case_joined = ''.join(map(str, numbers))
+    if int(case_joined) == 0 :
+        return 0
+    pointer_list = []
+    for value in numbers:
+        split_value = list(str(value))
+        print(split_value[0])
 
 
 def solution_use_permutations(numbers):
+    # case_joined = ''.join(map(str, numbers))
+    # if int(case_joined) == 0 :
+    #     return 0
     permuted_list = list(permutations(numbers, len(numbers)))
     joined_list = []
+    # print(permuted_list)
     for value in permuted_list:
         string = ''.join(map(str, value))
+        # print(string)
+        if int(string) == 0:
+            joined_list.append(0)
+            break
         joined_list.append(string)
     joined_list.sort(reverse=True)
     return str(joined_list[0])
@@ -43,5 +57,6 @@ def solution_test(numbers):
 
 if __name__ == '__main__':
     # numbers = [6, 10, 2]
-    numbers = [3, 30, 34, 5, 9]
-    print(solution_insert_sort(numbers))
+    numbers = [3, 30, 34, 5, 9, 0]
+    # numbers = [0,0,0,0,0,0]
+    print(solution_reverse_radix_sort(numbers))
