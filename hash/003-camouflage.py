@@ -138,25 +138,26 @@ def solution_use_dict2(clothes):
 
 
 def solution_use_combinations(clothes):
-    attribute = dict()
+    category = dict()
     entity = dict()
     for value, key in clothes:
-        if attribute.get(key) is None:
-            attribute[key] = []
-            attribute[key].append(value)
-            entity[key] = len(attribute[key])
+        if category.get(key) is None:
+            category[key] = []
+            category[key].append(value)
+            entity[key] = len(category[key])
         else:
-            attribute[key].append(value)
-            entity[key] = len(attribute[key])
-    print(attribute)
-    keys_list = list(attribute.keys())
+            category[key].append(value)
+            entity[key] = len(category[key])
+    print(category)
+    keys_list = list(category.keys())
     keys_len = len(keys_list)
     print("keys_len : " + str(keys_len))
     print("entity : " + str(entity))
 
+    print(entity.values())
     solo_num = sum(entity.values())
     print("1개를 고를 때 :" + str(solo_num))
-
+    ############################################33
     sum_num = 0
     for i in range(2, keys_len + 1):
         key_list_combinations = list(combinations(entity, i))
@@ -166,9 +167,9 @@ def solution_use_combinations(clothes):
             multiply_num = 0
             for k in range(len(key_list_combinations[j])):
                 if multiply_num == 0:
-                    multiply_num = len(attribute.get(key_list_combinations[j][k]))
+                    multiply_num = len(category.get(key_list_combinations[j][k]))
                 else:
-                    multiply_num *= len(attribute.get(key_list_combinations[j][k]))
+                    multiply_num *= len(category.get(key_list_combinations[j][k]))
             sum_num += multiply_num
             print(str(multiply_num) + "가지 경우의 수")
         print("를 더해서 " + str(sum_num))
@@ -210,17 +211,17 @@ def solution_use_combinations_removed_print(clothes):
 
 def solution_use_dict3(clothes):
     answer = 1
-    attribute = dict()
+    category = dict()
 
     for value, key in clothes:
-        if attribute.get(key) is None:
-            attribute[key] = []
-            attribute[key].append(value)
+        if category.get(key) is None:
+            category[key] = []
+            category[key].append(value)
         else:
-            attribute[key].append(value)
+            category[key].append(value)
 
-    for key in attribute:
-        answer *= len(attribute[key]) + 1
+    for key in category:
+        answer *= len(category[key]) + 1
     return answer - 1
 
 
@@ -252,5 +253,5 @@ if __name__ == '__main__':
     n = 9
     # print(factorial(n))
     # print(recurrence_factorial(n))
-    print(solution_use_combinations(c1))
-    print(solution_use_dict3(c1))
+    print(solution_use_combinations(t3))
+    # print(solution_use_dict3(c1))
