@@ -7,29 +7,37 @@ brown, yellow = 2044, 20000
 from math import sqrt
 
 
+from math import sqrt
+
+
 def is_prime(number):
-    if number != 1:
-        for f in range(2, number):
-            if number % f == 0:
-                return False
-    else:
+    if number < 2:
         return False
-    return True
+    elif number == 2 or number == 3:
+        return True
+    else:
+        i = 2
+        root = sqrt(number)
+        while i <= root:
+            if number % i == 0:
+                return False
+            i += 1
+        return True
 
 
 def solution(brown, yellow):
-    factors = []
+    factorizations = []
     root = int(sqrt(yellow))
     prime = is_prime(yellow)
 
-    for i in range(yellow + 1, root, -1):
+    for i in range(yellow + 1, root - 1, -1):
         for j in range(1, root + 1):
             if i * j == yellow:
-                factors.append([i, j])
+                factorizations.append([i, j])
 
     if yellow == 1:
         return [3, 3]
-    for a, b in factors:
+    for a, b in factorizations:
         i = (a + b) * 2
         if prime and (yellow + 1) * 2 == i:
                 return [a + 2, b + 2]
