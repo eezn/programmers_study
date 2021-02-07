@@ -1,7 +1,7 @@
 # brown, yellow = 10, 2 # return [4, 3]
 # brown, yellow = 8, 1 # return [3, 3]
 brown, yellow = 24, 24 # return [8, 6]
-
+# brown, yellow = 2048, 20000
 
 from math import sqrt
 
@@ -24,22 +24,21 @@ def is_prime(number):
 def solution(brown, yellow):
     factorizations = []
     root = int(sqrt(yellow))
-    isprime = is_prime(yellow)
+    prime = is_prime(yellow)
+
     for i in range(yellow + 1, 1, -1):
         for j in range(1, root + 1):
             if i * j == yellow:
                 factorizations.append([i, j])
-    # print(factorizations)
+    print(factorizations)
 
     if yellow == 1:
         return [3, 3]
     for a, b in factorizations:
         print(a, b)
-        if isprime:
-            if (yellow + 1) * 2 == 2 * (a + b):
+        if prime and (yellow + 1) * 2 == (a + b) * 2:
                 return [a + 2, b + 2]
-        else:
-            if yellow - 4 == 2 * (a + b):
+        elif (a + b) * 2 + 4 == brown:
                 return [a + 2, b + 2]
 
 
