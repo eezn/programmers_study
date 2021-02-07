@@ -8,37 +8,32 @@ from math import sqrt
 
 
 def is_prime(number):
-    if number < 2:
-        return 0
-    elif number == 2 or number == 3:
-        return 1
+    if number != 1:
+        for f in range(2, number):
+            if number % f == 0:
+                return False
     else:
-        i = 2
-        root = sqrt(number)
-        while i <= root:
-            if number % i == 0:
-                return 0
-            i += 1
-        return 1
+        return False
+    return True
 
 
 def solution(brown, yellow):
-    factorizations = []
+    factors = []
     root = int(sqrt(yellow))
     prime = is_prime(yellow)
 
-    for i in range(yellow + 1, root - 1, -1):
+    for i in range(yellow + 1, root, -1):
         for j in range(1, root + 1):
             if i * j == yellow:
-                factorizations.append([i, j])
+                factors.append([i, j])
 
     if yellow == 1:
         return [3, 3]
-    for a, b in factorizations:
-        print(a, b)
-        if prime and (yellow + 1) * 2 == (a + b) * 2:
+    for a, b in factors:
+        i = (a + b) * 2
+        if prime and (yellow + 1) * 2 == i:
                 return [a + 2, b + 2]
-        elif (a + b) * 2 + 4 == brown:
+        elif i + 4 == brown:
                 return [a + 2, b + 2]
 
 
