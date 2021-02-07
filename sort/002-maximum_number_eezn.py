@@ -9,7 +9,8 @@
 
 
 numbers = [3, 30, 300, 94, 939, 9, 5, 0, 59]
-# 9.94.939.5.3.30.300.0
+# 9.94.939.59.5.3.30.300.0
+# numbers = [3, 30, 300, 0, 0, 9, 5, 0, 59]
 
 
 def compare_str(str1, str2):
@@ -30,7 +31,7 @@ def solution(numbers):
     for elem in sorted(lst, reverse=True):
         sorted_lst.append(elem.rstrip('#'))
     print(sorted_lst)
-    for i in range(len(sorted_lst) - 1):
+    for i in range(len(sorted_lst)):
         print(sorted_lst)
         for j in range(i + 1, len(sorted_lst)):
             if compare_str(sorted_lst[i], sorted_lst[j]) < 0:
@@ -39,7 +40,6 @@ def solution(numbers):
                 sorted_lst[j] = tmp
                 break
     print(sorted_lst)
-
 
     return answer
 
