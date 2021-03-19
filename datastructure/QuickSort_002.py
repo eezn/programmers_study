@@ -6,25 +6,28 @@
 from typing import MutableSequence
 
 
-def quick_sort(a: MutableSequence, left: int, right: int) -> None:
-    pl = left
-    pr = right
-    x = a[(left - right) // 2]
+def quick_sort(data_array: MutableSequence, start: int, last: int) -> None:
+    low = start
+    high = last
+    pivot = data_array[(start + last) // 2]
 
-    while pl <= pr:
-        while a[pl] < x: pl += 1
-        while a[pr] > x: pr -= 1
-        if pl <= pr:
-            a[pl], a[pr] = a[pr], a[pl]
-            pl += 1
-            pr -= 1
+    print(f'data[{start}] ~ data[{last}]: ', *data_array[start: last + 1])  # 새로 추가된 부분
 
-    if left < pr: quick_sort(a, left, pr)
-    if right > pl: quick_sort(a, pl, right)
+    while low <= high:
+        while data_array[low] < pivot: low += 1
+        while data_array[high] > pivot: high -= 1
+        if low <= high:
+            data_array[low], data_array[high] = data_array[high], data_array[low]
+            low += 1
+            high -= 1
+
+    if start < high: quick_sort(data_array, start, high)
+    if last > low: quick_sort(data_array, low, last)
+    return data_array
 
 
 if __name__ == '__main__':
     data = [4, 2, 5, 7, 9, 1, 3, 8, 6, 0]
-    # data = [13, 77, 49, 35, 61, 48, 73, 23, 95, 3, 89, 37, 57, 99, 17, 32, 94, 28, 15, 55, 7, 51, 88, 97, 62]
+    data = [13, 77, 49, 35, 61, 48, 73, 23, 95, 3, 89, 37, 57, 99, 17, 32, 94, 28, 15, 55, 7, 51, 88, 97, 62]
     last = int(len(data) - 1)
     print('{0}'.format(quick_sort(data, 0, last)))
