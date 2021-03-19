@@ -32,6 +32,23 @@ def find_pivot(array):
     return r
 
 
+def find_pivot_value(array):
+    r = find_pivot(array)
+    return r[0]
+
+
+def find_pivot_index(array, first_index, median_index, last_index):
+    if array[median_index] < array[first_index]:
+        array[median_index], array[first_index] = array[first_index], array[median_index]
+
+    if array[last_index] < array[median_index]:
+        array[last_index], array[median_index] = array[median_index], array[last_index]
+
+    if array[median_index] < array[first_index]:
+        array[median_index], array[first_index] = array[first_index], array[median_index]
+    return median_index
+
+
 if __name__ == '__main__':
     data = [4, 2, 5, 7, 9, 10, 1, 3, 8, 6, 11]
     # data = [32, 77, 49, 35, 61, 48, 73, 23, 95, 3, 89, 37, 23, 99, 17, 32, 94, 28, 15, 55, 7, 51, 88, 97, 57]

@@ -5,11 +5,18 @@
 
 from typing import MutableSequence
 
+from datastructure import MedianOfThree
+
 
 def quick_sort(data_array: MutableSequence, start: int, last: int) -> None:
     low = start
     high = last
-    pivot = data_array[(start + last) // 2]
+    print(data_array)
+    pivot = MedianOfThree.find_pivot_index(data_array, low, (low + high) // 2, high)
+    # pivot = data_array[(start + last) // 2]
+    print(data_array)
+
+    print(pivot)
 
     print(f'data[{start}] ~ data[{last}]: ', *data_array[start: last + 1])  # 새로 추가된 부분
 
@@ -20,7 +27,7 @@ def quick_sort(data_array: MutableSequence, start: int, last: int) -> None:
             data_array[low], data_array[high] = data_array[high], data_array[low]
             low += 1
             high -= 1
-
+    print("-------------------")
     if start < high: quick_sort(data_array, start, high)
     if last > low: quick_sort(data_array, low, last)
     return data_array
@@ -28,6 +35,6 @@ def quick_sort(data_array: MutableSequence, start: int, last: int) -> None:
 
 if __name__ == '__main__':
     data = [4, 2, 5, 7, 9, 1, 3, 8, 6, 0]
-    data = [13, 77, 49, 35, 61, 48, 73, 23, 95, 3, 89, 37, 57, 99, 17, 32, 94, 28, 15, 55, 7, 51, 88, 97, 62]
+    # data = [13, 77, 49, 35, 61, 48, 73, 23, 95, 3, 89, 37, 57, 99, 17, 32, 94, 28, 15, 55, 7, 51, 88, 97, 62]
     last = int(len(data) - 1)
     print('{0}'.format(quick_sort(data, 0, last)))
