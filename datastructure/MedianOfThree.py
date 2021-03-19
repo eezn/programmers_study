@@ -46,7 +46,7 @@ def find_pivot_index(array, first_index, median_index, last_index):
 
     if array[median_index] < array[first_index]:
         array[median_index], array[first_index] = array[first_index], array[median_index]
-    return median_index
+    return copy.deepcopy(array[median_index])
 
 
 if __name__ == '__main__':
