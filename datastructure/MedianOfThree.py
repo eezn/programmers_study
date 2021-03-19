@@ -1,7 +1,7 @@
 import copy
 
 
-def median_of_three(array):
+def find_pivot(array):
     print("---배열의 처음, 중간, 마지막 인덱스 구하기---")
     data_array = array
     median_index = (len(data_array) // 2)
@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     print("---피벗을 찾고자 하는 데이터---")
     print(data)
-    refine_data = median_of_three(data)
+    refine_data = find_pivot(data)
 
     print("---정렬 완료 후---")
     print(refine_data)
